@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Анкета российского производителя";
+}
+
+<div>
+    <h3>Анкета российского производителя</h3>
+
+    @using (Html.BeginForm("", "Home", FormMethod.Post))
+    {
+    <table>
+        <tr>
+            <td><p>@Html.Label("Введите Ваше имя")</p></td>
+            <td>@Html.TextBox("User")</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Выберите регион")</p></td>
+            <td>@Html.DropDownList("Region", ViewBag.Regions as SelectList, new { id = "region" })</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Выберите город")</p></td>
+            <td>@Html.DropDownList("City", ViewBag.Cities as SelectList, new { id = "city" })</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Сфера деятельности")</p></td>
+            <td>@Html.ListBox("BusinessArea", ViewBag.BusinessAreas as MultiSelectList)</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Адрес Вашего сайта")</p></td>
+            <td>@Html.TextBox("User")</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Интернет-магазин расположен на отдельном домене")</p></td>
+            <td>@Html.CheckBox("User", false)</td>
+        </tr>
+    </table>
+
+    <h4>Регистрационные данные</h4>
+    <table>
+        <tr>
+            <td><p>@Html.Label("Электронный адрес")</p></td>
+            <td>@Html.TextBox("User")</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Логин")</p></td>
+            <td>@Html.TextBox("User")</td>
+        </tr>
+        <tr>
+            <td><p>@Html.Label("Пароль")</p></td>
+            <td>@Html.Password("User")</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Отправить" /></td>
+        </tr>
+    </table>
+    }
+</div>
+
+
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+
+        $('#region').change(function()
+        {
+            // получаем выбранный id
+            var id = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetCities")/' + id,
+                success: function (data) {
+
+                    // заменяем содержимое присланным частичным представлением
+                    $('#city').replaceWith(data);
+                }
+            });
+        });
+    })
+</script>
+}

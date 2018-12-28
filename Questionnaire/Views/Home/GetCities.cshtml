@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Questionnaire.Models.TovarikaDB.City>
+    <select id="city" name="City">
+        @foreach(var item in Model)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
