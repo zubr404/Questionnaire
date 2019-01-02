@@ -26,7 +26,7 @@ namespace Questionnaire.BLL.Services
         public IEnumerable<CityDTO> GetCityDTO(int regionId)
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<City, CityDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<City>, List<CityDTO>>(Database.City.Get(regionId));
+            return mapper.Map<IEnumerable<City>, List<CityDTO>>(Database.City.GetPart(regionId));
         }
 
         public IEnumerable<RegionDTO> GetRegionDTO()
@@ -35,9 +35,29 @@ namespace Questionnaire.BLL.Services
             return mapper.Map<IEnumerable<Region>, List<RegionDTO>>(Database.Region.GetAll());
         }
 
-        public void MakeQuestionnaire(BusinessAreaCompanyDTO businessAreaCompanyDTO, BusinessAreaDTO businessAreaDTO, CityDTO cityDTO, CompanyDTO companyDTO, RegionDTO regionDTO, UserDTO userDTO)
+        public void MakeQuestionnaire(CompanyDTO companyDTO, UserDTO userDTO)
         {
-            throw new NotImplementedException();
+            User user = new User
+            {
+                Email = userDTO.Email,
+                Login = userDTO.Login,
+                Password = userDTO.Password
+            };
+
+            Company company = new Company
+            {
+                Name = companyDTO.Name,
+                WebsiteAddress = companyDTO.WebsiteAddress,
+                AddressOnlineStore = companyDTO.AddressOnlineStore,
+                RegionId = companyDTO.RegionId,
+                CityId = companyDTO.CityId,
+                UserId = companyDTO.UserId,
+                BusinessAreaCompanies = (new MapperConfiguration(cfg => cfg.CreateMap<BusinessAreaCompanyDTO, BusinessAreaCompany>()).CreateMapper()).Map<IEnumerable<BusinessAreaCompanyDTO>, List<BusinessAreaCompany>>(companyDTO.BusinessAreaCompanies)
+            };
+
+            Database.User.Create(user);
+            Database.Company.Create(company);
+            Database.Save();
         }
 
         public void Dispose()

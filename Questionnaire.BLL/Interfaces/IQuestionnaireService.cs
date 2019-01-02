@@ -5,12 +5,7 @@ namespace Questionnaire.BLL.Interfaces
 {
     public interface IQuestionnaireService
     {
-        void MakeQuestionnaire(BusinessAreaCompanyDTO businessAreaCompanyDTO,
-            BusinessAreaDTO businessAreaDTO,
-            CityDTO cityDTO,
-            CompanyDTO companyDTO,
-            RegionDTO regionDTO,
-            UserDTO userDTO);
+        void MakeQuestionnaire(CompanyDTO companyDTO, UserDTO userDTO);
         IEnumerable<BusinessAreaDTO> GetBusinessAreaDTO();
         IEnumerable<RegionDTO> GetRegionDTO();
         IEnumerable<CityDTO> GetCityDTO(int regionId);

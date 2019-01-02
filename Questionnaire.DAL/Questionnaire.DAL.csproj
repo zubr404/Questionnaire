@@ -63,6 +63,7 @@
     <Compile Include="Repositories\BusinessAreaRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

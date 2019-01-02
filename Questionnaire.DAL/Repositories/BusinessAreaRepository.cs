@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Questionnaire.DAL.Entities;
 using Questionnaire.DAL.Interfaces;
 using Questionnaire.Models;
@@ -27,6 +28,11 @@ namespace Questionnaire.DAL.Repositories
         public IEnumerable<BusinessArea> GetAll()
         {
             return db.BusinessAreas;
+        }
+
+        public IEnumerable<BusinessArea> GetPart(int id)
+        {
+            return db.BusinessAreas.Where(x => x.Id == id);
         }
     }
 }

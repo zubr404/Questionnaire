@@ -2,6 +2,7 @@
 using Questionnaire.DAL.Entities;
 using Questionnaire.DAL.Interfaces;
 using Questionnaire.Models;
+using System.Linq;
 
 namespace Questionnaire.DAL.Repositories
 {
@@ -27,6 +28,11 @@ namespace Questionnaire.DAL.Repositories
         public IEnumerable<BusinessAreaCompany> GetAll()
         {
             return db.BusinessAreaCompanies;
+        }
+
+        public IEnumerable<BusinessAreaCompany> GetPart(int id)
+        {
+            return db.BusinessAreaCompanies.Where(x => x.CompanyId == id);
         }
     }
 }
