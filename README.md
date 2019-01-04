@@ -8,3 +8,8 @@
 - [ ] Project Questionnaire.BLL
     - [ ] Валидация
     - [x] Сохранение в БД
+
+:zero::four:**.**:zero::one:**.**:two::zero::one::nine:
+- [ ] Исправления и дополнения
+	- [ ] Project Questionnaire.BLL
+		- [ ] Сохранение в БД: Добавить вставку в BusinessAreaCompany
