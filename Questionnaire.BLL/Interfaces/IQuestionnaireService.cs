@@ -8,6 +8,7 @@ namespace Questionnaire.BLL.Interfaces
         void MakeQuestionnaire(CompanyDTO companyDTO, UserDTO userDTO);
         IEnumerable<BusinessAreaDTO> GetBusinessAreaDTO();
         IEnumerable<RegionDTO> GetRegionDTO();
+        IEnumerable<CityDTO> GetCityDTO();
         IEnumerable<CityDTO> GetCityDTO(int regionId);
         void Dispose();
     }

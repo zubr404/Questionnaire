@@ -1,14 +1,12 @@
-﻿using AutoMapper;
-using Questionnaire.BLL.DTO;
+﻿using Questionnaire.BLL.DTO;
 using Questionnaire.BLL.Interfaces;
 using Questionnaire.DAL.Entities;
 using Questionnaire.DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace Questionnaire.BLL.Services
 {
-    class QuestionnaireService : IQuestionnaireService
+    public class QuestionnaireService : IQuestionnaireService
     {
         IUnitOfWork Database { get; set; }
 
@@ -19,20 +17,26 @@ namespace Questionnaire.BLL.Services
 
         public IEnumerable<BusinessAreaDTO> GetBusinessAreaDTO()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BusinessArea, BusinessAreaDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<BusinessArea>, List<BusinessAreaDTO>>(Database.BusinessArea.GetAll());
+            MapService map = new MapService();
+            return map.Mapping<BusinessArea, BusinessAreaDTO>(Database.BusinessArea.GetAll());
+        }
+
+        public IEnumerable<CityDTO> GetCityDTO()
+        {
+            MapService map = new MapService();
+            return map.Mapping<City, CityDTO>(Database.City.GetAll());
         }
 
         public IEnumerable<CityDTO> GetCityDTO(int regionId)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<City, CityDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<City>, List<CityDTO>>(Database.City.GetPart(regionId));
+            MapService map = new MapService();
+            return map.Mapping<City, CityDTO>(Database.City.GetPart(regionId));
         }
 
         public IEnumerable<RegionDTO> GetRegionDTO()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Region, RegionDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Region>, List<RegionDTO>>(Database.Region.GetAll());
+            MapService map = new MapService();
+            return map.Mapping<Region, RegionDTO>(Database.Region.GetAll());
         }
 
         public void MakeQuestionnaire(CompanyDTO companyDTO, UserDTO userDTO)
@@ -52,7 +56,7 @@ namespace Questionnaire.BLL.Services
                 RegionId = companyDTO.RegionId,
                 CityId = companyDTO.CityId,
                 UserId = companyDTO.UserId,
-                BusinessAreaCompanies = (new MapperConfiguration(cfg => cfg.CreateMap<BusinessAreaCompanyDTO, BusinessAreaCompany>()).CreateMapper()).Map<IEnumerable<BusinessAreaCompanyDTO>, List<BusinessAreaCompany>>(companyDTO.BusinessAreaCompanies)
+                BusinessAreaCompanies = (new MapService().Mapping<BusinessAreaCompanyDTO, BusinessAreaCompany>(companyDTO.BusinessAreaCompanies))
             };
 
             Database.User.Create(user);
@@ -64,6 +68,5 @@ namespace Questionnaire.BLL.Services
         {
             Database.Dispose();
         }
-
     }
 }

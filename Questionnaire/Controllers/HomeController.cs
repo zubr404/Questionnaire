@@ -1,34 +1,42 @@
-﻿using Questionnaire.Models;
-using Questionnaire.Models.TovarikaDB;
-using System;
+﻿using Questionnaire.BLL.DTO;
+using Questionnaire.BLL.Interfaces;
+using Questionnaire.BLL.Services;
+using Questionnaire.Web.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace Questionnaire.Controllers
+namespace Questionnaire.Web.Controllers
 {
     public class HomeController : Controller
     {
-        QuestionnaireContext db = new QuestionnaireContext();
+        IQuestionnaireService questionnaireService;
+        public HomeController(IQuestionnaireService service)
+        {
+            questionnaireService = service;
+        }
 
         public ActionResult Index()
         {
-            SelectList regions = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.Regions = regions;
+            MapService map = new MapService();
 
-            SelectList cities = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.Cities = cities;
+            IEnumerable<RegionDTO> regionDTOs = questionnaireService.GetRegionDTO();
+            ViewBag.Regions = new SelectList(map.Mapping<RegionDTO, RegionViewModel>(regionDTOs), "Id", "Name");
 
-            MultiSelectList business_areas = new MultiSelectList(db.BusinessAreas, "Id", "Name");
-            ViewBag.BusinessAreas = business_areas;
+            IEnumerable<CityDTO> cityDTOs = questionnaireService.GetCityDTO();
+            ViewBag.Cities = new SelectList(map.Mapping<CityDTO, CityViewModel>(cityDTOs), "Id", "Name");
 
+            IEnumerable<BusinessAreaDTO> businessAreaDTOs = questionnaireService.GetBusinessAreaDTO();
+            ViewBag.BusinessAreas = new MultiSelectList(map.Mapping<BusinessAreaDTO, BusinessAreaViewModel>(businessAreaDTOs), "Id", "Name");
+             
             return View();
         }
 
         public ActionResult GetCities(int id)
         {
-            return PartialView(db.Cities.Where(c => c.RegionId == id).ToList());
+            MapService map = new MapService();
+
+            IEnumerable<CityDTO> cityDTOs = questionnaireService.GetCityDTO(id);
+            return PartialView(map.Mapping<CityDTO, CityViewModel>(cityDTOs));
         }
     }
 }

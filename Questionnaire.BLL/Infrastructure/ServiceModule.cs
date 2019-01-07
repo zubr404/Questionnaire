@@ -4,7 +4,7 @@ using Questionnaire.DAL.Repositories;
 
 namespace Questionnaire.BLL.Infrastructure
 {
-    class ServiceModule : NinjectModule
+    public class ServiceModule : NinjectModule
     {
         private readonly string connectionString;
         public ServiceModule(string connection)
