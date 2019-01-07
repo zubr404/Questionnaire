@@ -8,6 +8,8 @@
         public string AddressOnlineStore { get; set; }
         public int RegionId { get; set; }
         public int CityId { get; set; }
-        public int UserId { get; set; }
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

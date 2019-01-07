@@ -13,10 +13,9 @@ namespace Questionnaire.DAL.Entities
         public string AddressOnlineStore { get; set; }
         public int RegionId { get; set; }
         public int CityId { get; set; }
-
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
 
         public ICollection<BusinessAreaCompany> BusinessAreaCompanies { get; set; }
         public Company()

@@ -32,7 +32,7 @@ namespace Questionnaire.DAL.Repositories
 
         public IEnumerable<Company> GetPart(int id)
         {
-            return db.Companies.Where(x => x.UserId == id);
+            return db.Companies.Where(x => x.Id == id);
         }
     }
 }

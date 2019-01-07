@@ -55,7 +55,6 @@
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Region.cs" />
-    <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

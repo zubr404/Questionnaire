@@ -13,7 +13,6 @@ namespace Questionnaire.DAL.Repositories
         private CityRepository cityRepository;
         private CompanyRepository companyRepository;
         private RegionRepository regionRepository;
-        private UserRepository userRepository;
 
         public EFUnitOfWork (string connectionString)
         {
@@ -25,7 +24,6 @@ namespace Questionnaire.DAL.Repositories
         public IRepository<City> City => cityRepository ?? (cityRepository = new CityRepository(db));
         public IRepository<Company> Company => companyRepository ?? (companyRepository = new CompanyRepository(db));
         public IRepository<Region> Region => regionRepository ?? (regionRepository = new RegionRepository(db));
-        public IRepository<User> User => userRepository ?? (userRepository = new UserRepository(db));
 
         public void Save()
         {

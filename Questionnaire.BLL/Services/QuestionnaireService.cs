@@ -39,15 +39,8 @@ namespace Questionnaire.BLL.Services
             return map.Mapping<Region, RegionDTO>(Database.Region.GetAll());
         }
 
-        public void MakeQuestionnaire(CompanyDTO companyDTO, UserDTO userDTO)
+        public void MakeQuestionnaire(CompanyDTO companyDTO)
         {
-            User user = new User
-            {
-                Email = userDTO.Email,
-                Login = userDTO.Login,
-                Password = userDTO.Password
-            };
-
             Company company = new Company
             {
                 Name = companyDTO.Name,
@@ -55,11 +48,9 @@ namespace Questionnaire.BLL.Services
                 AddressOnlineStore = companyDTO.AddressOnlineStore,
                 RegionId = companyDTO.RegionId,
                 CityId = companyDTO.CityId,
-                UserId = companyDTO.UserId,
                 BusinessAreaCompanies = (new MapService().Mapping<BusinessAreaCompanyDTO, BusinessAreaCompany>(companyDTO.BusinessAreaCompanies))
             };
 
-            Database.User.Create(user);
             Database.Company.Create(company);
             Database.Save();
         }

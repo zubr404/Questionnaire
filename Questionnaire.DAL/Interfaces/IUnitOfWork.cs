@@ -10,7 +10,6 @@ namespace Questionnaire.DAL.Interfaces
         IRepository<City> City { get; }
         IRepository<Company> Company { get; }
         IRepository<Region> Region { get; }
-        IRepository<User> User { get; }
 
         void Save();
     }

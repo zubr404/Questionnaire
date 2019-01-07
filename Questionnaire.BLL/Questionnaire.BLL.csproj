@@ -55,7 +55,6 @@
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\CompanyDTO.cs" />
     <Compile Include="DTO\RegionDTO.cs" />
-    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\IQuestionnaireService.cs" />

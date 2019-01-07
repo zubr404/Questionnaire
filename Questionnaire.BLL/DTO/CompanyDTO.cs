@@ -10,9 +10,9 @@ namespace Questionnaire.BLL.DTO
         public string AddressOnlineStore { get; set; }
         public int RegionId { get; set; }
         public int CityId { get; set; }
-
-        public int UserId { get; set; }
-        public UserDTO User { get; set; }
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
 
         public ICollection<BusinessAreaCompanyDTO> BusinessAreaCompanies { get; set; }
         public CompanyDTO()
