@@ -38,5 +38,27 @@ namespace Questionnaire.Web.Controllers
             IEnumerable<CityDTO> cityDTOs = questionnaireService.GetCityDTO(id);
             return PartialView(map.Mapping<CityDTO, CityViewModel>(cityDTOs));
         }
+
+        [HttpPost]
+        public string MakeCompany(CompanyViewModel company)
+        {
+            var companyDTO = new CompanyDTO
+            {
+                Id = company.Id,
+                Name = company.Name,
+                WebsiteAddress = company.WebsiteAddress,
+                AddressOnlineStore = company.AddressOnlineStore,
+                RegionId = company.RegionId,
+                CityId = company.CityId,
+                Email = company.Email,
+                Login = company.Login,
+                Password = company.Password,
+                BusinessAreaCompanies = new MapService().Mapping<BusinessAreaCompanyViewModel, BusinessAreaCompanyDTO>(company.BusinessAreaCompanies)
+            };
+
+            questionnaireService.MakeQuestionnaire(companyDTO);
+
+            return "Регистрация прошла успешно. Спасибо.";
+        }
     }
 }

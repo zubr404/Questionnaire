@@ -48,7 +48,7 @@ namespace Questionnaire.BLL.Services
                 AddressOnlineStore = companyDTO.AddressOnlineStore,
                 RegionId = companyDTO.RegionId,
                 CityId = companyDTO.CityId,
-                BusinessAreaCompanies = (new MapService().Mapping<BusinessAreaCompanyDTO, BusinessAreaCompany>(companyDTO.BusinessAreaCompanies))
+                BusinessAreaCompanies = new MapService().Mapping<BusinessAreaCompanyDTO, BusinessAreaCompany>(companyDTO.BusinessAreaCompanies)
             };
 
             Database.Company.Create(company);
