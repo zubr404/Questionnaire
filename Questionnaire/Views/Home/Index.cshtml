@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Questionnaire.Web.Models.CompanyViewModel
+
+@{
     ViewBag.Title = "Анкета российского производителя";
 }
 
@@ -10,50 +12,50 @@
     <table>
         <tr>
             <td><p>@Html.Label("Название компании и/или бренда*")</p></td>
-            <td>@Html.TextBox("User")</td>
+            <td>@Html.EditorFor(model => model.Name)</td>
         </tr>
         <tr>
-            <td><p>@Html.Label("Выберите регион")</p></td>
-            <td>@Html.DropDownList("Region", ViewBag.Regions as SelectList, new { id = "region" })</td>
+            <td><p>@Html.Label("Выберите регион*")</p></td>
+            <td>@Html.DropDownListFor(model => model.RegionId, ViewBag.Regions as SelectList, new { id = "region" })</td>
         </tr>
         <tr>
-            <td><p>@Html.Label("Выберите город")</p></td>
-            <td>@Html.DropDownList("City", ViewBag.Cities as SelectList, new { id = "city" })</td>
+            <td><p>@Html.Label("Выберите город*")</p></td>
+            <td>@Html.DropDownListFor(model => model.CityId, ViewBag.Cities as SelectList, new { id = "city" })</td>
         </tr>
         <tr>
-            <td><p>@Html.Label("Сфера деятельности")</p></td>
-            <td>@Html.ListBox("BusinessArea", ViewBag.BusinessAreas as MultiSelectList)</td>
+            <td><p>@Html.Label("Сфера деятельности*")</p></td>
+            <td>@Html.ListBoxFor(model => model.BusinessAreaCompanies, ViewBag.BusinessAreas as MultiSelectList)</td>
         </tr>
         <tr>
             <td><p>@Html.Label("Адрес Вашего сайта")</p></td>
-            <td>@Html.TextBox("User")</td>
+            <td>@Html.EditorFor(model => model.WebsiteAddress)</td>
         </tr>
         <tr>
             <td><p>@Html.Label("Интернет-магазин расположен на отдельном домене")</p></td>
-            <td>@Html.CheckBox("User", false)</td>
+            <td>@Html.CheckBox("OnlineStore", false)</td>
         </tr>
         <tr>
             <td><p>@Html.Label("Адрес интернет-магазина")</p></td>
-            <td>@Html.TextBox("User")</td>
+            <td>@Html.EditorFor(model => model.AddressOnlineStore)</td>
         </tr>
     </table>
 
     <h4>Регистрационные данные</h4>
     <table>
         <tr>
-            <td><p>@Html.Label("Электронный адрес")</p></td>
-            <td>@Html.TextBox("User")</td>
+            <td><p>@Html.Label("Электронный адрес*")</p></td>
+            <td>@Html.EditorFor(model => model.Email)</td>
         </tr>
         <tr>
-            <td><p>@Html.Label("Логин")</p></td>
-            <td>@Html.TextBox("User")</td>
+            <td><p>@Html.Label("Логин*")</p></td>
+            <td>@Html.EditorFor(model => model.Login)</td>
         </tr>
         <tr>
-            <td><p>@Html.Label("Пароль")</p></td>
-            <td>@Html.Password("User")</td>
+            <td><p>@Html.Label("Пароль*")</p></td>
+            <td>@Html.PasswordFor(model => model.Password)</td>
         </tr>
         <tr>
-            <td><input type="submit" value="Отправить" /></td>
+            <td><input type="submit" value="Отправить" disabled="disabled" /></td>
         </tr>
     </table>
     }

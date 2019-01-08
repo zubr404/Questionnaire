@@ -1,4 +1,6 @@
-﻿namespace Questionnaire.Web.Models
+﻿using System.Collections.Generic;
+
+namespace Questionnaire.Web.Models
 {
     public class CompanyViewModel
     {
@@ -11,5 +13,11 @@
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+
+        public ICollection<BusinessAreaCompanyViewModel> BusinessAreaCompanies { get; set; }
+        public CompanyViewModel()
+        {
+            BusinessAreaCompanies = new List<BusinessAreaCompanyViewModel>();
+        }
     }
 }
